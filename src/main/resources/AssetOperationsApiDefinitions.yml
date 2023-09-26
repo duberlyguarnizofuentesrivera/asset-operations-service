@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: AssetOperations
+  description: AssetOperations
+  version: 1.0.0
+  contact:
+    name: Duberly Guarnizo
+    email: duberlygfr@gmail.com
+    url: 'https://duberlyguarnizo.com'
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /assets/loans/{accountId}:
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account UUID to make the deposit on.
+        schema:
+          type: string
+          format: uuid
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanCreationDto'
+      responses:
+        201:
+          description: "Loan created"
+
+  /assets/payments/{accountId}:
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account UUID to make the deposit on.
+        schema:
+          type: string
+          format: uuid
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentCreationDto'
+      responses:
+        201:
+          description: "Loan created"
+
+
+  /assets/card-expenses/{accountId}:
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account UUID to make the deposit on.
+        schema:
+          type: string
+          format: uuid
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardExpenseCreationDto'
+      responses:
+        201:
+          description: "Loan created"
+
+components:
+  schemas:
+    LoanCreationDto:
+      properties:
+        amount:
+          type: number
+          format: double
+        transactionMedia:
+          enum:
+            - atm
+            - app
+            - web
+            - branch
+    PaymentCreationDto:
+      properties:
+        amount:
+          type: number
+          format: double
+        transactionMedia:
+          enum:
+            - atm
+            - app
+            - web
+            - branch
+
+    CardExpenseCreationDto:
+      properties:
+        amount:
+          type: number
+          format: double
