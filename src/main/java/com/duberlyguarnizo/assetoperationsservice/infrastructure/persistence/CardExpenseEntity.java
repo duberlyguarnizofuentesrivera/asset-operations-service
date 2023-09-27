@@ -4,7 +4,6 @@
 
 package com.duberlyguarnizo.assetoperationsservice.infrastructure.persistence;
 
-import com.duberlyguarnizo.assetoperationsservice.domain.enums.OperationChannel;
 import java.time.Instant;
 import java.util.UUID;
 import lombok.Builder;
@@ -22,6 +21,5 @@ public class CardExpenseEntity {
   private String id;
   private UUID cardAccountId;
   private Double amount;
-  private OperationChannel operationChannel;
   private Instant createdAt;
 }

@@ -17,6 +17,7 @@ public class PersistenceMapper {
     return Loan.builder()
         .amount(entity.getAmount())
         .loanAccountId(entity.getLoanAccountId())
+        .operationChannel(entity.getOperationChannel())
         .build();
   }
 
@@ -24,6 +25,7 @@ public class PersistenceMapper {
     return LoanEntity.builder()
         .amount(domain.getAmount())
         .loanAccountId(domain.getLoanAccountId())
+        .operationChannel(domain.getOperationChannel())
         .createdAt(Instant.now())
         .build();
   }
@@ -49,7 +51,6 @@ public class PersistenceMapper {
     return CardExpense.builder()
         .cardAccountId(entity.getCardAccountId())
         .amount(entity.getAmount())
-        .operationChannel(entity.getOperationChannel())
         .build();
   }
 
@@ -57,7 +58,6 @@ public class PersistenceMapper {
     return CardExpenseEntity.builder()
         .cardAccountId(domain.getCardAccountId())
         .amount(domain.getAmount())
-        .operationChannel(domain.getOperationChannel())
         .createdAt(Instant.now())
         .build();
   }

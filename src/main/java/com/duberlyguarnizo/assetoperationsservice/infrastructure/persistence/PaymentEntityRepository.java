@@ -4,10 +4,10 @@
 
 package com.duberlyguarnizo.assetoperationsservice.infrastructure.persistence;
 
-import java.util.List;
+import io.reactivex.rxjava3.core.Observable;
 import java.util.UUID;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.reactive.RxJava3SortingRepository;
 
-public interface PaymentEntityRepository extends MongoRepository<PaymentEntity, String> {
-  List<PaymentEntity> findByAccountId(UUID loanId);
+public interface PaymentEntityRepository extends RxJava3SortingRepository<PaymentEntity, String> {
+  Observable<PaymentEntity> findByAccountId(UUID loanId);
 }

@@ -4,6 +4,7 @@
 
 package com.duberlyguarnizo.assetoperationsservice.infrastructure.port;
 
+import com.duberlyguarnizo.assetoperationsservice.architecture.Port;
 import com.duberlyguarnizo.assetoperationsservice.domain.model.CardExpense;
 import com.duberlyguarnizo.assetoperationsservice.domain.model.Loan;
 import com.duberlyguarnizo.assetoperationsservice.domain.model.Payment;
@@ -12,11 +13,12 @@ import com.duberlyguarnizo.assetoperationsservice.infrastructure.mapper.Persiste
 import com.duberlyguarnizo.assetoperationsservice.infrastructure.persistence.CardExpenseEntityRepository;
 import com.duberlyguarnizo.assetoperationsservice.infrastructure.persistence.LoanEntityRepository;
 import com.duberlyguarnizo.assetoperationsservice.infrastructure.persistence.PaymentEntityRepository;
-import java.util.List;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
+@Port
 @Repository
 public class AssetPersistenceImpl implements AssetPersistence {
   private final LoanEntityRepository loanRepository;
@@ -30,38 +32,42 @@ public class AssetPersistenceImpl implements AssetPersistence {
   }
 
   @Override
-  public void takeLoan(Loan loan) {
-    loanRepository.save(PersistenceMapper.toEntity(loan));
+  public Single<Loan> takeLoan(Loan loan) {
+    return loanRepository.save(PersistenceMapper.toEntity(loan))
+        .map(PersistenceMapper::toDomain);
+
   }
 
   @Override
-  public List<Loan> getLoansByAccountId(UUID accountId) {
-    return loanRepository.findByLoanAccountId(accountId).stream()
-        .map(PersistenceMapper::toDomain)
-        .collect(Collectors.toList());
+  public Observable<Loan> getLoansByAccountId(UUID accountId) {
+    return loanRepository.findByLoanAccountId(accountId)
+        .map(PersistenceMapper::toDomain);
   }
 
   @Override
-  public void PayLoanOrCard(Payment payment) {
-    paymentRepository.save(PersistenceMapper.toEntity(payment));
+  public Single<Payment> PayLoanOrCard(Payment payment) {
+    return paymentRepository.save(PersistenceMapper.toEntity(payment))
+        .map(PersistenceMapper::toDomain);
+
   }
 
   @Override
-  public List<Payment> getPaymentsByAccountId(UUID accountId) {
-    return paymentRepository.findByAccountId(accountId).stream()
-        .map(PersistenceMapper::toDomain)
-        .collect(Collectors.toList());
+  public Observable<Payment> getPaymentsByAccountId(UUID accountId) {
+    return paymentRepository.findByAccountId(accountId)
+        .map(PersistenceMapper::toDomain);
+
   }
 
   @Override
-  public void makeCardExpense(CardExpense expense) {
-    cardExpenseRepository.save(PersistenceMapper.toEntity(expense));
+  public Single<CardExpense> makeCardExpense(CardExpense expense) {
+    return cardExpenseRepository.save(PersistenceMapper.toEntity(expense))
+        .map(PersistenceMapper::toDomain);
+
   }
 
   @Override
-  public List<CardExpense> getCardExpensesByAccountId(UUID accountId) {
-    return cardExpenseRepository.findByCardAccountId(accountId).stream()
-        .map(PersistenceMapper::toDomain)
-        .collect(Collectors.toList());
+  public Observable<CardExpense> getCardExpensesByAccountId(UUID accountId) {
+    return cardExpenseRepository.findByCardAccountId(accountId)
+        .map(PersistenceMapper::toDomain);
   }
 }

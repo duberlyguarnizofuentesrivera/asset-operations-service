@@ -20,6 +20,7 @@ paths:
           type: string
           format: uuid
     post:
+      operationId: registerLoan
       requestBody:
         content:
           application/json:
@@ -39,6 +40,7 @@ paths:
           type: string
           format: uuid
     post:
+      operationId: registerPayment
       requestBody:
         content:
           application/json:
@@ -59,6 +61,7 @@ paths:
           type: string
           format: uuid
     post:
+      operationId: registerCardExpense
       requestBody:
         content:
           application/json:

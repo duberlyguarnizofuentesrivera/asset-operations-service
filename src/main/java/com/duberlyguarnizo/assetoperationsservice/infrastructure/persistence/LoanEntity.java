@@ -4,6 +4,7 @@
 
 package com.duberlyguarnizo.assetoperationsservice.infrastructure.persistence;
 
+import com.duberlyguarnizo.assetoperationsservice.domain.enums.OperationChannel;
 import java.time.Instant;
 import java.util.UUID;
 import lombok.Builder;
@@ -21,5 +22,6 @@ public class LoanEntity {
   private String id;
   private UUID loanAccountId;
   private Double amount;
+  private OperationChannel operationChannel;
   private Instant createdAt;
 }

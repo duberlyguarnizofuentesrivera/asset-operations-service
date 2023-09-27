@@ -7,19 +7,20 @@ package com.duberlyguarnizo.assetoperationsservice.domain.repository;
 import com.duberlyguarnizo.assetoperationsservice.domain.model.CardExpense;
 import com.duberlyguarnizo.assetoperationsservice.domain.model.Loan;
 import com.duberlyguarnizo.assetoperationsservice.domain.model.Payment;
-import java.util.List;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import java.util.UUID;
 
 public interface AssetPersistence {
-  public void takeLoan(Loan loan);
+  public Single<Loan> takeLoan(Loan loan);
 
-  public List<Loan> getLoansByAccountId(UUID accountId);
+  public Observable<Loan> getLoansByAccountId(UUID accountId);
 
-  public void PayLoanOrCard(Payment payment);
+  public Single<Payment> PayLoanOrCard(Payment payment);
 
-  public List<Payment> getPaymentsByAccountId(UUID accountId);
+  public Observable<Payment> getPaymentsByAccountId(UUID accountId);
 
-  public void makeCardExpense(CardExpense expense);
+  public Single<CardExpense> makeCardExpense(CardExpense expense);
 
-  public List<CardExpense> getCardExpensesByAccountId(UUID accountId);
+  public Observable<CardExpense> getCardExpensesByAccountId(UUID accountId);
 }

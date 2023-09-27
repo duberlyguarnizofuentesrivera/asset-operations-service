@@ -4,6 +4,7 @@
 
 package com.duberlyguarnizo.assetoperationsservice.domain.model;
 
+import com.duberlyguarnizo.assetoperationsservice.architecture.DomainModel;
 import com.duberlyguarnizo.assetoperationsservice.domain.enums.OperationChannel;
 import java.util.UUID;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import lombok.ToString;
 @Builder
 @Getter
 @ToString
+@DomainModel
 public class Payment {
   private UUID accountId;
   private Double amount;
