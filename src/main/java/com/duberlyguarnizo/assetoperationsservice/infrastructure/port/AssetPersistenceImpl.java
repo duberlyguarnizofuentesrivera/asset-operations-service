@@ -18,6 +18,10 @@ import io.reactivex.rxjava3.core.Single;
 import java.util.UUID;
 import org.springframework.stereotype.Repository;
 
+/**
+ * This class implements the AssetPersistence interface and provides the implementation for
+ * persisting and retrieving assets such as loans, payments, and card expenses.
+ */
 @Port
 @Repository
 public class AssetPersistenceImpl implements AssetPersistence {
@@ -25,7 +29,16 @@ public class AssetPersistenceImpl implements AssetPersistence {
   private final PaymentEntityRepository paymentRepository;
   private final CardExpenseEntityRepository cardExpenseRepository;
 
-  public AssetPersistenceImpl(LoanEntityRepository loanRepository, PaymentEntityRepository paymentRepository, CardExpenseEntityRepository cardExpenseRepository) {
+  /**
+   * Creates a new instance of AssetPersistenceImpl.
+   *
+   * @param loanRepository        The repository for LoanEntity.
+   * @param paymentRepository     The repository for PaymentEntity.
+   * @param cardExpenseRepository The repository for CardExpenseEntity.
+   */
+  public AssetPersistenceImpl(LoanEntityRepository loanRepository,
+                              PaymentEntityRepository paymentRepository,
+                              CardExpenseEntityRepository cardExpenseRepository) {
     this.loanRepository = loanRepository;
     this.paymentRepository = paymentRepository;
     this.cardExpenseRepository = cardExpenseRepository;
@@ -45,7 +58,7 @@ public class AssetPersistenceImpl implements AssetPersistence {
   }
 
   @Override
-  public Single<Payment> PayLoanOrCard(Payment payment) {
+  public Single<Payment> payLoanOrCard(Payment payment) {
     return paymentRepository.save(PersistenceMapper.toEntity(payment))
         .map(PersistenceMapper::toDomain);
 

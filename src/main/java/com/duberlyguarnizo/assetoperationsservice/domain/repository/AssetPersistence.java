@@ -11,12 +11,15 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import java.util.UUID;
 
+/**
+ * Interface defining the methods for persistence operations related to assets.
+ */
 public interface AssetPersistence {
   public Single<Loan> takeLoan(Loan loan);
 
   public Observable<Loan> getLoansByAccountId(UUID accountId);
 
-  public Single<Payment> PayLoanOrCard(Payment payment);
+  public Single<Payment> payLoanOrCard(Payment payment);
 
   public Observable<Payment> getPaymentsByAccountId(UUID accountId);
 

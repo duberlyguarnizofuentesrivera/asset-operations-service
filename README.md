@@ -1,9 +1,9 @@
-[![Quality gate](https://duberlyguarnizo.com/sonarqube/api/project_badges/quality_gate?project=Bootcamp-Passive-Operations-Service&token=sqb_2809361b37b77479448f881f70958e59c01ab145)](https://duberlyguarnizo.com/sonarqube/dashboard?id=Bootcamp-Passive-Operations-Service)
-
+[![Quality gate](https://duberlyguarnizo.com/sonarqube/api/project_badges/quality_gate?project=Bootcamp-Asset-Operations-Service&token=sqb_601e2c6d6aa3141688ba132dc65e880a67867403)](https://duberlyguarnizo.com/sonarqube/dashboard?id=Bootcamp-Asset-Operations-Service)
 # Asset Operations
 
-[![Coverage](https://duberlyguarnizo.com/sonarqube/api/project_badges/measure?project=Bootcamp-Passive-Operations-Service&metric=coverage&token=sqb_2809361b37b77479448f881f70958e59c01ab145)](https://duberlyguarnizo.com/sonarqube/dashboard?id=Bootcamp-Passive-Operations-Service)
-[![Bugs](https://duberlyguarnizo.com/sonarqube/api/project_badges/measure?project=Bootcamp-Passive-Operations-Service&metric=bugs&token=sqb_2809361b37b77479448f881f70958e59c01ab145)](https://duberlyguarnizo.com/sonarqube/dashboard?id=Bootcamp-Passive-Operations-Service)
+[![Coverage](https://duberlyguarnizo.com/sonarqube/api/project_badges/measure?project=Bootcamp-Asset-Operations-Service&metric=coverage&token=sqb_601e2c6d6aa3141688ba132dc65e880a67867403)](https://duberlyguarnizo.com/sonarqube/dashboard?id=Bootcamp-Asset-Operations-Service)
+[![Bugs](https://duberlyguarnizo.com/sonarqube/api/project_badges/measure?project=Bootcamp-Asset-Operations-Service&metric=bugs&token=sqb_601e2c6d6aa3141688ba132dc65e880a67867403)](https://duberlyguarnizo.com/sonarqube/dashboard?id=Bootcamp-Asset-Operations-Service)
+[![Lines of Code](https://duberlyguarnizo.com/sonarqube/api/project_badges/measure?project=Bootcamp-Asset-Operations-Service&metric=ncloc&token=sqb_601e2c6d6aa3141688ba132dc65e880a67867403)](https://duberlyguarnizo.com/sonarqube/dashboard?id=Bootcamp-Asset-Operations-Service)
 
 ## Microservice for NttData's Bootcamp
 

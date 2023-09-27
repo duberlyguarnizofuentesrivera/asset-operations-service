@@ -17,6 +17,9 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.adapter.rxjava.RxJava3Adapter;
 import reactor.core.publisher.Mono;
 
+/**
+ * Implementation class for the AssetsApiDelegate interface.
+ */
 @Service
 public class AssetApiDelegateImp implements AssetsApiDelegate {
 
@@ -39,8 +42,9 @@ public class AssetApiDelegateImp implements AssetsApiDelegate {
                                                         Mono<CardExpenseCreationDto> dto,
                                                         ServerWebExchange exchange) {
     exchange.getResponse().setStatusCode(HttpStatus.CREATED);
-    return RxJava3Adapter.singleToMono(restService.createCardExpense(RxJava3Adapter.monoToSingle(dto),
-        accountId));
+    return RxJava3Adapter.singleToMono(
+        restService.createCardExpense(RxJava3Adapter.monoToSingle(dto), accountId)
+    );
   }
 
   /**
@@ -56,10 +60,9 @@ public class AssetApiDelegateImp implements AssetsApiDelegate {
                                                  Mono<LoanCreationDto> loanCreationDto,
                                                  ServerWebExchange exchange) {
     exchange.getResponse().setStatusCode(HttpStatus.CREATED);
-    return RxJava3Adapter.singleToMono(restService.createLoan(RxJava3Adapter.monoToSingle(loanCreationDto),
-        accountId));
-
-
+    return RxJava3Adapter.singleToMono(
+        restService.createLoan(RxJava3Adapter.monoToSingle(loanCreationDto), accountId)
+    );
   }
 
   /**
@@ -75,8 +78,8 @@ public class AssetApiDelegateImp implements AssetsApiDelegate {
                                                     Mono<PaymentCreationDto> paymentCreationDto,
                                                     ServerWebExchange exchange) {
     exchange.getResponse().setStatusCode(HttpStatus.CREATED);
-    return RxJava3Adapter.singleToMono(restService.createPayment(RxJava3Adapter.monoToSingle(paymentCreationDto),
-        accountId));
-
+    return RxJava3Adapter.singleToMono(
+        restService.createPayment(RxJava3Adapter.monoToSingle(paymentCreationDto), accountId)
+    );
   }
 }

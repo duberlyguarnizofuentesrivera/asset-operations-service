@@ -13,6 +13,12 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Represents a payment entity in the database.
+ * <p>
+ * This class is annotated with {@link Document} to indicate that it is a MongoDB document.
+ * </p>
+ */
 @Builder
 @Getter
 @Setter

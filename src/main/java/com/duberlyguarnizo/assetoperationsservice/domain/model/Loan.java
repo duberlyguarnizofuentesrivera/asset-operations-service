@@ -11,6 +11,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * Represents a loan account.
+ */
 @Getter
 @Builder
 @ToString

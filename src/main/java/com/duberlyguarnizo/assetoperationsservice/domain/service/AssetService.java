@@ -13,6 +13,11 @@ import io.reactivex.rxjava3.core.Single;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
 
+/**
+ * The AssetService class is responsible for managing assets such as loans,
+ * payments, and card expenses.
+ * It interacts with the AssetPersistence class to perform CRUD operations on the assets.
+ */
 @Service
 public class AssetService {
   private final AssetPersistence assetPersistence;
@@ -26,7 +31,7 @@ public class AssetService {
   }
 
   public Single<Payment> newPayment(Payment payment) {
-    return assetPersistence.PayLoanOrCard(payment);
+    return assetPersistence.payLoanOrCard(payment);
   }
 
   public Single<CardExpense> buyWithCard(CardExpense cardExpense) {

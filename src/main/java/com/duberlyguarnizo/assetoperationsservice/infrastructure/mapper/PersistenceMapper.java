@@ -12,7 +12,23 @@ import com.duberlyguarnizo.assetoperationsservice.infrastructure.persistence.Loa
 import com.duberlyguarnizo.assetoperationsservice.infrastructure.persistence.PaymentEntity;
 import java.time.Instant;
 
-public class PersistenceMapper {
+/**
+ * The PersistenceMapper class provides static methods for converting between domain objects and
+ * their corresponding persistence entities.
+ *
+ * <p>This class should not be instantiated, as it only contains static methods.
+ */
+public final class PersistenceMapper {
+  PersistenceMapper() {
+    throw new UnsupportedOperationException("This class is not meant to be instantiated");
+  }
+
+  /**
+   * Converts a LoanEntity object to a Loan domain object.
+   *
+   * @param entity the LoanEntity object to be converted
+   * @return the converted Loan domain object
+   */
   public static Loan toDomain(LoanEntity entity) {
     return Loan.builder()
         .amount(entity.getAmount())
@@ -21,6 +37,39 @@ public class PersistenceMapper {
         .build();
   }
 
+  /**
+   * Converts a PaymentEntity object to a Payment object.
+   *
+   * @param entity the PaymentEntity object to be converted
+   * @return the converted Payment object
+   */
+  public static Payment toDomain(PaymentEntity entity) {
+    return Payment.builder()
+        .accountId(entity.getAccountId())
+        .amount(entity.getAmount())
+        .operationChannel(entity.getOperationChannel())
+        .build();
+  }
+
+  /**
+   * Converts a CardExpenseEntity object to a CardExpense object.
+   *
+   * @param entity the CardExpenseEntity object to be converted
+   * @return the converted CardExpense object
+   */
+  public static CardExpense toDomain(CardExpenseEntity entity) {
+    return CardExpense.builder()
+        .cardAccountId(entity.getCardAccountId())
+        .amount(entity.getAmount())
+        .build();
+  }
+
+  /**
+   * Converts a Loan object to a LoanEntity object.
+   *
+   * @param domain the Loan object to be converted
+   * @return the converted LoanEntity object
+   */
   public static LoanEntity toEntity(Loan domain) {
     return LoanEntity.builder()
         .amount(domain.getAmount())
@@ -30,14 +79,13 @@ public class PersistenceMapper {
         .build();
   }
 
-  public static Payment toDomain(PaymentEntity entity) {
-    return Payment.builder()
-        .accountId(entity.getAccountId())
-        .amount(entity.getAmount())
-        .operationChannel(entity.getOperationChannel())
-        .build();
-  }
 
+  /**
+   * Converts a Payment object to a PaymentEntity object.
+   *
+   * @param domain the Payment object to be converted
+   * @return the converted PaymentEntity object
+   */
   public static PaymentEntity toEntity(Payment domain) {
     return PaymentEntity.builder()
         .accountId(domain.getAccountId())
@@ -47,13 +95,13 @@ public class PersistenceMapper {
         .build();
   }
 
-  public static CardExpense toDomain(CardExpenseEntity entity) {
-    return CardExpense.builder()
-        .cardAccountId(entity.getCardAccountId())
-        .amount(entity.getAmount())
-        .build();
-  }
 
+  /**
+   * Converts a CardExpense object to a CardExpenseEntity object.
+   *
+   * @param domain the CardExpense object to be converted
+   * @return the converted CardExpenseEntity object
+   */
   public static CardExpenseEntity toEntity(CardExpense domain) {
     return CardExpenseEntity.builder()
         .cardAccountId(domain.getCardAccountId())

@@ -11,6 +11,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * Represents a payment made by a customer.
+ *
+ * @since 1.0.0
+ */
 @Builder
 @Getter
 @ToString

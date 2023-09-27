@@ -9,6 +9,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * This annotation is used to mark a class as a Port.
+ * Classes marked with this annotation should adhere to the specific design and behavior
+ * required for a Port in the given application.
+ */
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.TYPE)
 public @interface Port {

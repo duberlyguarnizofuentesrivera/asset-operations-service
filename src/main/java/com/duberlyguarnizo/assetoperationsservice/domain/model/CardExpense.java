@@ -10,6 +10,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * Represents a credit card expense.
+ **/
+
 @Getter
 @Builder
 @ToString

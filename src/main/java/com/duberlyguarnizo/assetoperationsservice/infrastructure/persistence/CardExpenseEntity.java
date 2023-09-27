@@ -12,6 +12,9 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Represents a card expense entity in a data store.
+ */
 @Builder
 @Getter
 @Setter

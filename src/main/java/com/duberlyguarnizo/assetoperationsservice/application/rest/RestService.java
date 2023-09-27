@@ -19,6 +19,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class that handles various REST endpoints related to assets.
+ */
 @Service
 public class RestService {
   private final AssetService assetService;
@@ -27,6 +30,13 @@ public class RestService {
     this.assetService = assetService;
   }
 
+  /**
+   * Creates a new card expense.
+   *
+   * @param dtoSingle a Single of type CardExpenseCreationDto representing the card expense
+   * @param accountId the UUID of the account associated with the card expense
+   * @return a Single of type ResponseEntity representing the response entity.
+   */
   public Single<ResponseEntity<Void>> createCardExpense(Single<CardExpenseCreationDto> dtoSingle,
                                                         UUID accountId) {
     dtoSingle.subscribe(dto -> assetService.newPayment(Payment.builder()
@@ -37,6 +47,13 @@ public class RestService {
     return Single.just(new ResponseEntity<Void>(HttpStatus.CREATED));
   }
 
+  /**
+   * Creates a new loan.
+   *
+   * @param dtoSingle A Single of type LoanCreationDto containing the loan creation data
+   * @param accountId The UUID of the account for which the loan is being created
+   * @return A Single of type ResponseEntity indicating the success of the creation.
+   */
   public Single<ResponseEntity<Void>> createLoan(Single<LoanCreationDto> dtoSingle,
                                                  UUID accountId) {
     dtoSingle.subscribe(dto -> assetService.newLoan(Loan.builder()
@@ -47,6 +64,13 @@ public class RestService {
     return Single.just(new ResponseEntity<Void>(HttpStatus.CREATED));
   }
 
+  /**
+   * Creates a new payment.
+   *
+   * @param dtoSingle A Single of type PaymentCreationDto containing the payment creation data
+   * @param accountId The UUID of the account for which the payment is being created
+   * @return A Single of type ResponseEntity indicating the success of the creation.
+   */
   public Single<ResponseEntity<Void>> createPayment(Single<PaymentCreationDto> dtoSingle,
                                                     UUID accountId) {
     dtoSingle.subscribe(dto -> assetService.newPayment(Payment.builder()

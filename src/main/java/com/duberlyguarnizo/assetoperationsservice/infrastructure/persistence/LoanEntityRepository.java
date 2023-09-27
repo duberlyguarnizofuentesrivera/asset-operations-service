@@ -8,6 +8,10 @@ import io.reactivex.rxjava3.core.Observable;
 import java.util.UUID;
 import org.springframework.data.repository.reactive.RxJava3SortingRepository;
 
+/**
+ * The LoanEntityRepository interface is a repository for managing LoanEntity objects.
+ * This interface provides methods for querying and manipulating LoanEntity objects.
+ */
 public interface LoanEntityRepository extends RxJava3SortingRepository<LoanEntity, String> {
   Observable<LoanEntity> findByLoanAccountId(UUID accountId);
 }

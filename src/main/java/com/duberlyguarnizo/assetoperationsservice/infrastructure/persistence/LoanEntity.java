@@ -13,6 +13,10 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * The LoanEntity class represents a loan entity in the system.
+ * It encapsulates the properties and behaviors of a loan.
+ */
 @Builder
 @Getter
 @Setter
