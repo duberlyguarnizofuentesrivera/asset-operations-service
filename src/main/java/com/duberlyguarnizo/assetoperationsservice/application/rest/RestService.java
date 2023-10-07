@@ -39,7 +39,7 @@ public class RestService {
    */
   public Single<ResponseEntity<Void>> createCardExpense(Single<CardExpenseCreationDto> dtoSingle,
                                                         UUID accountId) {
-    dtoSingle.subscribe(dto -> assetService.newPayment(Payment.builder()
+    dtoSingle.subscribe(dto -> assetService.newPayment(Payment.builder() //TODO: Corregir!
         .accountId(accountId)
         .amount(dto.getAmount())
         .build())).dispose();

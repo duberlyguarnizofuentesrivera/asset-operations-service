@@ -4,6 +4,7 @@
 
 package com.duberlyguarnizo.assetoperationsservice.domain.service;
 
+import com.duberlyguarnizo.assetoperationsservice.domain.messaging.InterServiceComms;
 import com.duberlyguarnizo.assetoperationsservice.domain.model.CardExpense;
 import com.duberlyguarnizo.assetoperationsservice.domain.model.Loan;
 import com.duberlyguarnizo.assetoperationsservice.domain.model.Payment;
@@ -21,9 +22,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AssetService {
   private final AssetPersistence assetPersistence;
+  private final InterServiceComms interServiceComms;
 
-  public AssetService(AssetPersistence assetPersistence) {
+  public AssetService(AssetPersistence assetPersistence, InterServiceComms interServiceComms) {
     this.assetPersistence = assetPersistence;
+    this.interServiceComms = interServiceComms;
   }
 
   public Single<Loan> newLoan(Loan loan) {
@@ -31,11 +34,20 @@ public class AssetService {
   }
 
   public Single<Payment> newPayment(Payment payment) {
-    return assetPersistence.payLoanOrCard(payment);
+    var accountId = payment.getAccountId();
+    // payments do not count for monthly count of operations without commission
+    var result = assetPersistence.payLoanOrCard(payment);
+    interServiceComms.accountSubtractFromBalance(accountId, payment.getAmount());
+    return result;
   }
 
   public Single<CardExpense> buyWithCard(CardExpense cardExpense) {
-    return assetPersistence.makeCardExpense(cardExpense);
+    if (interServiceComms.creditCardInsideCreditLimit(cardExpense.getCardAccountId(),
+        cardExpense.getAmount())) {
+      return assetPersistence.makeCardExpense(cardExpense);
+    } else {
+      return Single.error(new RuntimeException("Client does not have enough card credit"));
+    }
   }
 
   public Observable<Loan> getLoansByAccountId(UUID accountId) {
